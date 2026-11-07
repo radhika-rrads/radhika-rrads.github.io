@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Radhika R – React & Node.js Developer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<style>
+:root{--bg:#f6f2ff;--surface:#fff;--ink:#1b1038;--muted:#5f5486;--line:#ddd2f8;--accent:#6d3df0;--accent-ink:#fff;--warm:#d6338f;--tint:#ece6ff;--glow:rgba(124,58,237,.14);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11071f;--surface:#1e0b39;--ink:#f8f8f8;--muted:#b3a6cc;--line:#3b2166;--accent:#b58cf5;--accent-ink:#11071f;--warm:#8a4df0;--tint:#2c1250;--glow:rgba(81,40,137,.55);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11071f;--surface:#1e0b39;--ink:#f8f8f8;--muted:#b3a6cc;--line:#3b2166;--accent:#b58cf5;--accent-ink:#11071f;--warm:#8a4df0;--tint:#2c1250;--glow:rgba(81,40,137,.55);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(4rem + env(safe-area-inset-top,0px));scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;color:var(--ink);font:400 1.0625rem/1.65 "IBM Plex Sans",system-ui,sans-serif;background:radial-gradient(55rem 28rem at 15% -5%,var(--glow),transparent 65%),var(--bg);background-attachment:fixed;transition:color .3s}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+h1,h2,h3{font-family:"Bricolage Grotesque","IBM Plex Sans",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--warm);outline-offset:3px}
+.wrap{max-width:900px;margin:0 auto;padding:0 1.5rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:.25rem;height:3.5rem;overflow-x:auto}
+nav a{padding:.4rem .8rem;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem;white-space:nowrap}
+nav a:hover{color:var(--ink)}
+nav a.on{background:var(--accent);color:var(--accent-ink)}
+#theme{margin-left:auto;font:inherit;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:.35rem .9rem;cursor:pointer;white-space:nowrap}
+#bar{position:absolute;left:0;bottom:-1px;height:3px;width:0;background:var(--warm)}
+.hero{padding:4.5rem 0 3.5rem}
+h1{font-size:clamp(3rem,11vw,6.5rem);font-weight:800;letter-spacing:-.03em;color:var(--accent)}
+.role{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:clamp(1.3rem,4vw,2rem);font-weight:700;margin:1rem 0}
+.lead{max-width:60ch;color:var(--muted);margin:0 0 2rem}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-block;font:inherit;font-weight:500;padding:.7rem 1.2rem;border-radius:10px;text-decoration:none;border:1.5px solid var(--accent);background:transparent;color:var(--accent);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+section{padding:3.5rem 0;border-top:1px solid var(--line)}
+h2{font-size:2rem;font-weight:700;margin-bottom:1.5rem}
+.hint{color:var(--muted);margin:0 0 .75rem;font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;padding:0;margin:0 0 1.5rem;list-style:none}
+.chips li,.chips button,.filters button{font:inherit;font-size:.95rem;padding:.35rem .9rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink)}
+.chips button,.filters button{cursor:pointer;transition:transform .15s}
+.chips button:hover,.filters button:hover{transform:translateY(-2px);border-color:var(--accent)}
+.chips button[aria-pressed="true"],.filters button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.25rem}
+.project{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--line);border-radius:12px;padding:1.4rem 1.6rem;margin-bottom:1rem;transition:opacity .25s,border-color .25s,box-shadow .25s}
+.project:hover{border-left-color:var(--accent)}
+.project.hl{border-color:var(--warm);box-shadow:0 0 0 3px var(--tint)}
+.dim .project:not(.hl){opacity:.45}
+.toggle{all:unset;cursor:pointer;display:block;width:100%;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:1.35rem;font-weight:700}
+.toggle::after{content:"+";float:right;color:var(--warm);font-size:1.6rem;line-height:1}
+.open .toggle::after{content:"−"}
+.stack{color:var(--accent);font-weight:500;margin:.4rem 0 0;font-size:.95rem}
+.more{display:none;margin-top:.9rem}
+.open .more{display:block}
+.more ul{margin:0;padding-left:1.2rem;color:var(--muted)}
+.more li{margin-bottom:.4rem}
+.row{display:grid;grid-template-columns:15rem 1fr;gap:.25rem 1.5rem;margin-bottom:1rem}
+.row b{font-weight:500}.row span{color:var(--muted)}
+.list{margin:0;padding:0;list-style:none}.list li{margin-bottom:.8rem;line-height:1.4;padding-left:.9rem;border-left:3px solid var(--line)}.list li:hover{border-left-color:var(--accent)}.list li span{display:block;font-size:.95rem}
+footer{padding:3rem 0 4rem;border-top:1px solid var(--line)}
+@media (max-width:640px){.row{grid-template-columns:1fr}.hero{padding-top:3rem}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+<a href="#top" data-s="top">Home</a><a href="#work" data-s="work">Projects</a><a href="#experience" data-s="experience">Experience</a><a href="#about" data-s="about">About</a><a href="#contact" data-s="contact">Contact</a>
+<button id="theme" type="button" aria-label="Switch colour theme">Light mode</button>
+</div><div id="bar"></div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+<h1>Radhika R</h1>
+<p class="role">React.js &amp; Node.js developer</p>
+<p class="lead">Final-year Computer Science student at TKM Institute of Technology, Kollam. I build full-stack web applications with the MERN stack, and I’ve led teams, events and design work at my college’s innovation cell.</p>
+<div class="btns">
+<a class="btn primary" href="mailto:radhikaofficial2025@gmail.com">Email me</a>
+<a class="btn" href="https://github.com/radhika-rrads">GitHub</a>
+<a class="btn" href="https://linkedin.com/in/radhika-r-">LinkedIn</a>
+</div>
+</div></header>
+
+<main>
+<section id="work"><div class="wrap">
+<h2>Projects</h2>
+<p class="hint">Tap a skill to see which projects used it.</p>
+<ul class="chips" id="skills">
+<li style="display:contents"><button type="button" data-skill="react" aria-pressed="false">React.js</button></li>
+<li style="display:contents"><button type="button" data-skill="node" aria-pressed="false">Node.js</button></li>
+<li style="display:contents"><button type="button" data-skill="express" aria-pressed="false">Express.js</button></li>
+<li style="display:contents"><button type="button" data-skill="mongodb" aria-pressed="false">MongoDB</button></li>
+<li style="display:contents"><button type="button" data-skill="python" aria-pressed="false">Python</button></li>
+<li style="display:contents"><button type="button" data-skill="firebase" aria-pressed="false">Firebase</button></li>
+<li style="display:contents"><button type="button" data-skill="figma" aria-pressed="false">Figma</button></li>
+<li style="display:contents"><button type="button" data-skill="flutter" aria-pressed="false">Flutter</button></li>
+<li style="display:contents"><button type="button" data-skill="esp32" aria-pressed="false">ESP32</button></li>
+</ul>
+<div class="filters" role="group" aria-label="Filter projects">
+<button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="web" aria-pressed="false">Web</button><button type="button" data-f="mobile" aria-pressed="false">Mobile</button><button type="button" data-f="ml" aria-pressed="false">Machine learning</button><button type="button" data-f="iot" aria-pressed="false">IoT</button>
+</div>
+<div id="projects">
+<article class="project open" data-tag="web" data-skills="react node express mongodb">
+<button class="toggle" type="button" aria-expanded="true">E-commerce beauty store web application</button>
+<p class="stack">React.js, Node.js, Express.js, MongoDB</p>
+<div class="more"><ul><li>Developed a full-stack e-commerce web application for beauty and cosmetic products using React.js, Node.js, Express.js and MongoDB.</li><li>Implemented user authentication, product management, a shopping cart, a wishlist and user profiles.</li></ul></div>
+</article>
+<article class="project" data-tag="iot" data-skills="python firebase flutter esp32">
+<button class="toggle" type="button" aria-expanded="false">MediVault: smart medicine storage and dispensing (ongoing)</button>
+<p class="stack">Python, ESP32, Firebase, Flutter, OpenCV, BLE, Embedded C/C++</p>
+<div class="more"><ul><li>Designed an IoT-based automated medicine storage and dispensing system.</li><li>Integrated Firebase for cloud synchronization and notifications.</li><li>Planned AI-assisted medicine management with camera-based verification.</li><li>Developed a modular tray concept with a servo-driven dispensing mechanism.</li></ul></div>
+</article>
+<article class="project" data-tag="mobile" data-skills="firebase figma">
+<button class="toggle" type="button" aria-expanded="false">Face recognition attendance system</button>
+<p class="stack">Figma, Android Studio, Firebase</p>
+<div class="more"><ul><li>Worked on a mobile attendance app that uses face recognition and Bluetooth beacons.</li><li>Designed the app screens in Figma and handled data with Firebase.</li><li>Wrote the project documentation and technical reports, and took part in testing.</li></ul></div>
+</article>
+<article class="project" data-tag="ml" data-skills="python">
+<button class="toggle" type="button" aria-expanded="false">Cancer prediction with machine learning</button>
+<p class="stack">Python, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn</p>
+<div class="more"><ul><li>Classified tumors as benign or malignant from diagnostic data.</li><li>Cleaned and scaled the data, then compared Logistic Regression, Decision Tree, Random Forest, SVM and KNN models.</li></ul></div>
+</article>
+</div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+<h2>Experience</h2>
+<div class="row"><b>MERN stack development intern</b><span>Srishti Innovative</span></div>
+<div class="row"><b>AI for engineers intern</b><span>Qnayds LLP</span></div>
+<div class="row"><b>Machine learning &amp; AI intern</b><span>ICT Academy Kerala</span></div>
+<h2 style="margin-top:2.5rem">Teamwork and leadership</h2>
+<div class="row"><b>Creative &amp; Innovation Lead, IEDC</b><span>TKM Institute of Technology, 2025 – present</span></div>
+<div class="row"><b>Secretary, Robotics Club</b><span>TKM Institute of Technology, 2026 – present</span></div>
+<div class="row"><b>Event coordinator, INSIGHTS technical fest</b><span>2024 and 2025</span></div>
+<div class="row"><b>Event coordinator, Innovex’25</b><span>TKM College of Engineering, 2025</span></div>
+</div></section>
+
+<section id="about"><div class="wrap">
+<h2>Skills and education</h2>
+<ul class="chips"><li>HTML/CSS</li><li>SQL</li><li>Git/GitHub</li><li>C</li><li>Pandas</li><li>NumPy</li><li>Scikit-learn</li><li>OpenCV</li><li>Problem solving</li><li>Technical documentation</li><li>Team coordination</li><li>Communication</li></ul>
+<div class="row"><b>B.Tech, Computer Science and Engineering</b><span>TKM Institute of Technology, 2023 – 2027 (CGPA 6.8)</span></div>
+<div class="row"><b>Class XII, ISC</b><span>Mount Carmel Anglo-Indian Girls HS, 2021 (89%)</span></div>
+<div class="row"><b>Certifications</b><ul class="list"><li><b>Python Foundation</b><span>Infosys Springboard</span></li><li><b>Prompt Engineering</b><span>Infosys Springboard</span></li></ul></div>
+<div class="row"><b>Workshops</b><ul class="list"><li><b>Image Processing Using OpenCV</b><span>TKMCE RoboCup</span></li><li><b>Data Science with Python</b><span>Techmaghi</span></li><li><b>Robotics</b><span>Bonic Education</span></li><li><b>Decoding Social Media Trends</b><span>NIT Calicut</span></li></ul></div>
+</div></section>
+</main>
+
+<footer id="contact"><div class="wrap">
+<h2>Get in touch</h2>
+<p>Based in Kollam, Kerala.</p>
+<p><a href="mailto:radhikaofficial2025@gmail.com">radhikaofficial2025@gmail.com</a><br><a href="tel:+918590494926">8590494926</a></p>
+</div></footer>
+
+<script>
+var root=document.documentElement,$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+root.classList.add('js');
+var tb=document.getElementById('theme');
+try{root.setAttribute('data-theme',localStorage.getItem('theme')||'dark')}catch(e){root.setAttribute('data-theme','dark')}
+function lab(){tb.textContent=root.getAttribute('data-theme')==='dark'?'Light mode':'Dark mode'}lab();
+tb.onclick=function(){var n=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}lab()};
+$('.toggle').forEach(function(b){b.onclick=function(){b.setAttribute('aria-expanded',b.parentNode.classList.toggle('open'))}});
+var P=$('.project'),box=document.getElementById('projects');
+$('.filters button').forEach(function(b){b.onclick=function(){$('.filters button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});P.forEach(function(p){p.hidden=!(b.dataset.f==='all'||p.dataset.tag===b.dataset.f)})}});
+$('#skills button').forEach(function(b){b.onclick=function(){var on=b.getAttribute('aria-pressed')!=='true';$('#skills button').forEach(function(x){x.setAttribute('aria-pressed','false')});P.forEach(function(p){p.classList.remove('hl')});box.classList.remove('dim');if(on){b.setAttribute('aria-pressed','true');box.classList.add('dim');P.forEach(function(p){if((' '+p.dataset.skills+' ').indexOf(' '+b.dataset.skill+' ')>-1)p.classList.add('hl')})}}});
+var bar=document.getElementById('bar'),links=$('nav a'),secs=links.map(function(a){return document.getElementById(a.dataset.s)});
+function sc(){var h=root.scrollHeight-innerHeight;bar.style.width=(h>0?scrollY/h*100:0)+'%';var cur=0;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<innerHeight*.35)cur=i});links.forEach(function(a,i){a.classList.toggle('on',i===cur)})}
+addEventListener('scroll',sc,{passive:true});sc();
+</script>
+</body>
+</html>
